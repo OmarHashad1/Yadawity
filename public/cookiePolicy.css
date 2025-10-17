@@ -1,0 +1,514 @@
+/* Cookie Policy Specific Styles */
+
+.cookieHero {
+    background:  linear-gradient(135deg,   #8b7355 0%,  #6b5a47 100%);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 120px 0 80px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.cookieHero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.cookieHero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.heroContent {
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out;
+}
+
+.heroTitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.heroSubtitle {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+.lastUpdated {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 1.5rem;
+    border-radius: 3px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 0.95rem;
+}
+
+.lastUpdated i {
+    font-size: 1rem;
+}
+
+/* Table of Contents */
+.tableOfContents {
+    background: #f8f6f3;
+    padding: 60px 0;
+    border-bottom: 1px solid #e8d5b7;
+}
+
+.tocContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 3px;
+    box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+    border: 1px solid #e8d5b7;
+}
+
+.tocContainer h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color:#6b5a47;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid #e8d5b7;
+    padding-bottom: 1rem;
+}
+
+.tocList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2;
+    column-gap: 3rem;
+    column-fill: balance;
+}
+
+.tocList li {
+    margin-bottom: 0.75rem;
+    break-inside: avoid;
+}
+
+.tocLink {
+    color:#6b5a47;
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 1.5;
+    display: block;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tocLink:hover,
+.tocLink.active {
+    color:#6b5a47;
+    border-bottom-color: #e8d5b7;
+    transform: translateX(5px);
+}
+
+.tocLink.active {
+    font-weight: 600;
+    background: linear-gradient(90deg, #f8f6f3, transparent);
+    padding-left: 1rem;
+    border-left: 3px solid #6b5a47;
+}
+
+/* Content Sections */
+.cookieContent {
+    padding: 80px 0;
+    background: white;
+}
+
+.contentWrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contentSection {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: #fefdfb;
+    border-radius: 3px;
+    border-left: 4px solid #6b5a47;
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contentSection:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 69, 19, 0.12);
+}
+
+.contentSection h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color:#6b5a47;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e8d5b7;
+    padding-bottom: 0.75rem;
+}
+
+.contentSection h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #6b5a47;
+    margin: 2rem 0 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contentSection p {
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: #4a4a4a;
+    font-size: 1.05rem;
+}
+
+.contentSection ul {
+    margin: 1.5rem 0;
+    padding-left: 0;
+}
+
+.contentSection li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+    color: #4a4a4a;
+    list-style: none;
+}
+
+.contentSection li::before {
+    content: '🍪';
+    position: absolute;
+    left: 0.5rem;
+    font-size: 1rem;
+}
+
+.contentSection ol li::before {
+    content: none;
+}
+
+.contentSection ol {
+    padding-left: 1.5rem;
+}
+
+.contentSection ol li {
+    padding-left: 0.5rem;
+    list-style: decimal;
+}
+
+.contentSection strong {
+    color: #6b5a47;
+    font-weight: 600;
+}
+
+/* Highlight Boxes */
+.highlightBox,
+.warningBox {
+    background: #f8f6f3;
+    border: 1px solid #e8d5b7;
+    border-radius:3px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.highlightBox i,
+.warningBox i {
+    color:#6b5a47;
+    font-size: 1.5rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.warningBox {
+    background: #fef9e6;
+    border-color: #f0c674;
+}
+
+.warningBox i {
+    color: #d4831f;
+}
+
+/* Cookie Tables */
+.cookieTable {
+    margin: 2rem 0;
+    overflow-x: auto;
+    border-radius: 3px;
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
+}
+
+.cookieTable table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    min-width: 500px;
+}
+
+.cookieTable th,
+.cookieTable td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e8d5b7;
+}
+
+.cookieTable th {
+    background:  linear-gradient(135deg,   #8b7355 0%,  #6b5a47 100%);;
+    color: white;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+}
+
+.cookieTable tbody tr:hover {
+    background: #f8f6f3;
+}
+
+.cookieTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Cookie Controls */
+.cookieControls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.controlMethod {
+    background: #f8f6f3;
+    padding: 2rem;
+    border-radius: 3px;
+    border: 1px solid #e8d5b7;
+    text-align: center;
+}
+
+.controlMethod h3 {
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+.cookieBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg,   #8b7355 0%,  #6b5a47 100%);;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.cookieBtn:hover {
+    background: linear-gradient(135deg,   #8b7355 0%,  #6b5a47 100%);;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+    color: white;
+}
+
+/* Browser Guides */
+.browserGuides {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.browserGuide {
+    background: #f8f6f3;
+    padding: 1.5rem;
+    border-radius: 3px;
+    border: 1px solid #e8d5b7;
+}
+
+.browserGuide h3 {
+    margin-bottom: 1rem;
+    color:#6b5a47;
+    font-size: 1.2rem;
+}
+
+.browserGuide i {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.browserGuide ol {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.browserGuide li {
+    margin-bottom: 0.5rem;
+    padding-left: 0;
+}
+
+.browserGuide li::before {
+    content: none;
+}
+
+/* Contact Information Styling */
+.contactInfo {
+    background: #f8f6f3;
+    padding: 2rem;
+    border-radius: 3px;
+    margin-top: 2rem;
+    border: 1px solid #e8d5b7;
+}
+
+.contactMethod {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.contactMethod:last-child {
+    margin-bottom: 0;
+}
+
+.contactMethod i {
+    color: #6b5a47;
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+.contactMethod strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+/* Inline Links */
+.inlineLink {
+    color:#6b5a47;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.inlineLink:hover {
+    color:#6b5a47;
+    border-bottom-color:  linear-gradient(135deg,   #8b7355 0%,  #6b5a47 100%);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .heroTitle {
+        font-size: 2.5rem;
+    }
+    
+    .heroSubtitle {
+        font-size: 1.1rem;
+    }
+    
+    .tocContainer {
+        padding: 20px;
+        margin: 0 20px;
+    }
+    
+    .tocList {
+        columns: 1;
+    }
+    
+    .contentSection {
+        margin: 0 20px 3rem;
+        padding: 1.5rem;
+    }
+    
+    .contentSection h2 {
+        font-size: 1.8rem;
+    }
+    
+    .cookieTable {
+        font-size: 0.9rem;
+    }
+    
+    .cookieControls {
+        grid-template-columns: 1fr;
+    }
+    
+    .browserGuides {
+        grid-template-columns: 1fr;
+    }
+    
+    .contactMethod {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cookieHero {
+        padding: 100px 0 60px;
+    }
+    
+    .heroTitle {
+        font-size: 2rem;
+    }
+    
+    .lastUpdated {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .contentSection {
+        margin: 0 15px 2rem;
+        padding: 1rem;
+    }
+    
+    .tocContainer {
+        margin: 0 15px;
+    }
+    
+    .cookieTable th,
+    .cookieTable td {
+        padding: 0.5rem;
+    }
+    
+    .cookieBtn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}

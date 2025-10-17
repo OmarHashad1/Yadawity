@@ -1,0 +1,524 @@
+:root {
+  --primary-light: #fefefe;
+  --secondary-light: #faf8f5;
+  --accent-red: #8b1538;
+  --dark-red: #7f1d1d;
+  --burgundy: #991b1b;
+  --dark-brown: #4a2c17;
+  --medium-brown: #6b4423;
+  --light-brown: #8b7355;
+  --beige:#b8a690;
+  --beige-light: #e8dcc6;
+  --gold: #d4af37;
+  --gold-light: #f4d03f;
+   --brown-light: #6b5a47;
+   --brown-medium: #8b7355;
+  --cream: #f5f5dc;
+  --text-primary: #2c1810;
+  --text-secondary: #4a2c17;
+  --text-muted: #6b4423;
+  --background-primary: #fefefe;
+  --background-secondary: #faf8f5;
+}
+/* About Page Styles */
+.aboutMain {
+  margin-top: 90px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-brown);
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--beige-light);
+  border-radius: 3px;
+}
+
+/* Hero Section */
+.aboutHero {
+  background:  var(--beige-light);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.aboutHero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../image/fb0e872e-e7a1-4c35-9eff-5bca0ce50d34.png') center/cover;
+  opacity: 0.05;
+  z-index: 1;
+}
+
+.aboutHeroContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.aboutHeroContent {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.aboutHeroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.aboutHeroSubtitle {
+  font-size: 1.3rem;
+  color: var(--secondary-brown);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.aboutHeroDivider {
+  width: 100px;
+  height: 4px;
+  background: var(--beige-light);
+  margin: 2rem 0;
+  border-radius: 3px;
+}
+
+.aboutHeroDescription {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.aboutHeroImage {
+  position: relative;
+  animation: fadeInRight 0.8s ease-out;
+}
+
+.aboutHeroImage img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 20px 40px rgba(107, 68, 35, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.aboutHeroImage:hover img {
+  transform: scale(1.05);
+}
+
+/* Our Story Section */
+.ourStory {
+  padding: 100px 0;
+  background-color: var(--white);
+}
+
+.storyContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.storyText {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+.storyText .sectionTitle {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.storyText .sectionTitle::after {
+  left: 0;
+  transform: none;
+}
+
+.storyParagraph {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: bold;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+
+.storyParagraph:last-child {
+  margin-bottom: 0;
+}
+
+.storyImage {
+  position: relative;
+  animation: fadeInRight 0.8s ease-out;
+}
+
+.storyImage img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 20px 40px rgba(107, 68, 35, 0.15);
+}
+
+
+
+
+/* Values Section */
+.values {
+  padding: 100px 0;
+  background-color: var(--white);
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.valueCard {
+  background: var(--cream);
+  padding: 30px;
+  border-radius: 3px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.valueCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(107, 68, 35, 0.15);
+  border-color: var(--gold-accent);
+}
+
+.valueIcon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--brown-medium) 0%, var(--brown-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 1.5rem;
+  color: var(--white);
+}
+
+.valueTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-brown);
+  margin-bottom: 1rem;
+}
+
+.valueDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-light);
+}
+
+/* Team Section */
+.team {
+  padding: 100px 0;
+  background:  var(--cream);
+}
+
+.teamDescription {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-bottom: 60px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.teamCard {
+  background: var(--background-primary);
+  border-radius:3px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(107, 68, 35, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teamCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(107, 68, 35, 0.2);
+}
+
+.teamImage {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.teamImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.teamCard:hover .teamImage img {
+  transform: scale(1.1);
+}
+
+.teamInfo {
+  padding: 30px;
+  text-align: center;
+}
+
+.teamName {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary-brown);
+  margin-bottom: 0.5rem;
+}
+
+.teamRole {
+  font-size: 1rem;
+  color: var(--gold-accent);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.teamBio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: linear-gradient(135deg, var(--brown-medium) 0%, var(--brown-light) 100%);
+}
+
+/* Call to Action Section */
+.aboutCta {
+  padding: 100px 0;
+  background: var(--cream);
+  color: linear-gradient(135deg, var(--brown-medium) 0%, var(--brown-light) 100%);
+  text-align: center;
+}
+
+.ctaContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: linear-gradient(135deg, var(--brown-medium) 0%, var(--brown-light) 100%);
+}
+
+.ctaDescription {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  color:linear-gradient(135deg, var(--brown-medium) 0%, var(--brown-light) 100%);
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 15px 40px;
+  border-radius:3px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.ctaPrimary {
+  background:  linear-gradient(135deg, var(--brown-medium) 0%, var(--brown-light) 100%);
+  color:var(--white);
+  border-color:var(--white);
+}
+
+.ctaPrimary:hover {
+  background:var(--white);
+  color:var(--primary-brown);
+  border-color: var(--white);
+}
+
+.ctaSecondary {
+  background: linear-gradient(135deg, var(--brown-medium) 0%, var(--brown-light) 100%);
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.ctaSecondary:hover {
+  background: var(--white);
+  color: var(--primary-brown);
+}
+
+/* Active Navigation Link */
+.activeNavLink {
+  color: var(--gold-accent) !important;
+  font-weight: 600;
+}
+
+.activeBurgerLink {
+  color: var(--gold-accent) !important;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .aboutHeroContainer {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .aboutHeroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .aboutHeroSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .storyContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .storyText .sectionTitle {
+    text-align: center;
+  }
+  
+  .storyText .sectionTitle::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .missionVisionGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .ctaTitle {
+    font-size: 2rem;
+  }
+  
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .ctaButton {
+    width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutMain {
+    margin-top: 70px;
+  }
+  
+  .aboutHeroTitle {
+    font-size: 2rem;
+  }
+  
+  .aboutHeroSubtitle {
+    font-size: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .ctaTitle {
+    font-size: 1.8rem;
+  }
+  
+  .aboutHero,
+  .ourStory,
+  .missionVision,
+  .values,
+  .team,
+  .aboutCta {
+    padding: 60px 0;
+  }
+  
+  .teamGrid,
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,436 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Playfair Display", serif;
+    background: url(../image/d4s5689-2-300dpi-1500x998.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content wrapper to push footer down */
+.main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 40px; /* Top padding for navbar, bottom padding for spacing */
+}
+
+.login-container {
+    background: linear-gradient(180deg, #faf8f5 0%, #f2ede6 100%);
+    border-radius: 3px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 440px;
+    text-align: center;
+}
+
+.logo-section {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+
+
+.brand-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    background: #8b6f47;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.logo::before {
+    content: '';
+}
+
+.logo svg {
+    width: 32px;
+    height: 32px;
+    color: white;
+}
+
+.brand-name {
+    font-size: 28px;
+    color: #8b6f47;
+    font-weight: 600;
+    margin-bottom: 2px;
+    line-height: 1;
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-style: italic;
+}
+
+.brand-tagline {
+    color: #999;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+
+
+.welcome-subtitle {
+    color: #888;
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 30px auto;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    color: #8b6f47;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 3px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background: #f8f9fa;
+    height: 52px;
+    
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #8b6f47;
+    background: white;
+}
+
+.password-section {
+    position: relative;
+}
+
+.password-section label {
+    float: left;
+}
+
+.forgot-password {
+    color: #cc9966;
+    text-decoration: underline;
+    font-size: 14px;
+    float: right;
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
+.forgot-password:hover {
+    color: #8b6f47;
+}
+
+.sign-in-btn {
+    width: 50%;
+    background: linear-gradient(135deg, #6b5a47 0%, #8b7355 100%);
+    color: white;
+    border: none;
+    padding: 17px 15px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-bottom: 18px;
+}
+
+.sign-in-btn:hover {
+    background: #56452d;
+}
+
+.divider {
+    position: relative;
+    margin: 18px 0;
+    font-size: 14px;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.divider span {
+    background: linear-gradient(180deg, #faf8f5 0%, #f2ede6 100%);
+    padding: 0 15px;
+    position: relative;
+}
+
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 3px;
+    background: white;
+    color: #666;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    gap: 12px;
+}
+
+.social-btn:hover {
+    border-color: #8b6f47;
+    background: #f8f9fa;
+}
+
+.social-btn .icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-link {
+    color: #999;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: #cc9966;
+    text-decoration: underline;
+}
+
+.signup-link a:hover {
+    color: #8b6f47;
+}
+
+.footer-text {
+    color: #aaa;
+    font-size: 13px;
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+    
+    .welcome-title {
+        font-size: 28px;
+    }
+    
+    .main-content {
+        padding: 100px 15px 20px; /* Reduced padding for mobile */
+    }
+}
+
+  .error {
+        color: #e74c3c;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: block;
+      }
+      .form-group.has-error input {
+        border-color: #e74c3c;
+        box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
+      }
+      .form-group.has-success input {
+        border-color: #27ae60;
+        box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.1);
+      }
+      .sign-in-btn:disabled {
+        background-color: #bdc3c7;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+/* Remember Me Checkbox Styling */
+.remember-me-section {
+    margin: 20px 0;
+}
+
+.remember-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+    user-select: none;
+    position: relative;
+    padding-left: 30px;
+}
+
+.remember-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.remember-checkbox .checkmark {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.remember-checkbox:hover input ~ .checkmark {
+    border-color: #8b6f47;
+    background-color: #f8f9fa;
+}
+
+.remember-checkbox input:checked ~ .checkmark {
+    background-color: #8b6f47;
+    border-color: #8b6f47;
+}
+
+.remember-checkbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 50%;
+    top: 50%;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+}
+
+.remember-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.remember-checkbox input:focus ~ .checkmark {
+    box-shadow: 0 0 0 2px rgba(139, 111, 71, 0.2);
+}
+
+/* Back button styles for forgot password flow */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #8b6f47;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #faf8f5 0%, #f2ede6 100%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 0 8px 16px 0;
+}
+
+.back-button:hover {
+    color: #6b5a47;
+    border-color: #8b6f47;
+    background: linear-gradient(180deg, #f2ede6 0%, #e8e0d6 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(139, 111, 71, 0.15);
+}
+
+.back-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(139, 111, 71, 0.2);
+}
+
+.back-button::before {
+    content: '←';
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Container for multiple back buttons */
+.back-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+    justify-content: center;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 480px) {
+    .back-button {
+        font-size: 13px;
+        padding: 6px 12px;
+        margin: 0 4px 12px 0;
+    }
+    
+    .back-buttons-container {
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+}
+ /* Password Input Styles */
+        .password-input-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #8b7355;
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.3s ease;
+            z-index: 10;
+        }
+
+        .password-toggle:hover {
+            color: #6b4423;
+        }

@@ -1,0 +1,757 @@
+/* ===================================================================
+   BURGER MENU COMPONENT - HTML5 SEMANTIC DESIGN
+   Exact same functionality as navbar with modern design
+   ================================================================== */
+
+/* Import same fonts as navbar */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* Use exact same color variables as navbar */
+:root {
+    --primary-brown: #6b4423;
+    --secondary-brown: #8b5a2b;
+    --gold-accent: #d4a574;
+    --light-gold: #f4e6d3;
+    --dark-brown: #4a2c17;
+    --cream: #faf8f3;
+    --red-accent: #c5534a;
+    --green-accent: #5a7c65;
+    --text-dark: #2c1810;
+    --text-light: #8b7355;
+    --white: #ffffff;
+    --glass-bg: rgba(250, 248, 243, 0.95);
+    --shadow-light: rgba(107, 68, 35, 0.08);
+    --shadow-medium: rgba(107, 68, 35, 0.15);
+    --shadow-heavy: rgba(107, 68, 35, 0.25);
+    --hover-gold: rgba(212, 165, 116, 0.12);
+}
+
+/* =================
+   OVERLAY & CONTAINER
+   ================= */
+
+.burger-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(44, 24, 16, 0.8), 
+        rgba(107, 68, 35, 0.6),
+        rgba(212, 165, 116, 0.4)
+    );
+    backdrop-filter: blur(12px) saturate(1.5);
+    -webkit-backdrop-filter: blur(12px) saturate(1.5);
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.burger-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.burger-menu-container {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: linear-gradient(135deg, 
+        var(--cream) 0%, 
+        rgba(250, 248, 243, 0.98) 100%
+    );
+    backdrop-filter: blur(20px) saturate(1.3);
+    -webkit-backdrop-filter: blur(20px) saturate(1.3);
+    border-right: 2px solid rgba(212, 165, 116, 0.3);
+    box-shadow: 
+        8px 0 40px var(--shadow-heavy),
+        0 0 60px rgba(212, 165, 116, 0.15);
+    transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.burger-menu-overlay.active .burger-menu-container {
+    left: 0;
+}
+
+/* =================
+   HEADER SECTION
+   ================= */
+
+.burger-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 2rem 1.5rem 2rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(250, 248, 243, 0.85) 100%
+    );
+    border-bottom: 2px solid rgba(212, 165, 116, 0.2);
+    backdrop-filter: blur(15px);
+    position: relative;
+}
+
+.burger-menu-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 2rem;
+    right: 2rem;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        var(--gold-accent), 
+        var(--primary-brown), 
+        var(--gold-accent)
+    );
+    border-radius: 2px;
+}
+
+.burger-menu-logo {
+    margin: 0;
+    font-size: 0;
+}
+
+.burger-menu-logo a {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--primary-brown);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.burger-menu-logo a:hover {
+    color: var(--gold-accent);
+    transform: scale(1.05);
+}
+
+.burger-menu-close {
+    width: 48px;
+    height: 48px;
+    border: 2px solid rgba(212, 165, 116, 0.3);
+    border-radius: 12px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(250, 248, 243, 0.8) 100%
+    );
+    color: var(--primary-brown);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+.burger-menu-close:hover {
+    background: linear-gradient(135deg, 
+        var(--primary-brown) 0%, 
+        var(--secondary-brown) 100%
+    );
+    color: var(--white);
+    transform: rotate(90deg) scale(1.1);
+    border-color: var(--gold-accent);
+    box-shadow: 0 6px 25px var(--shadow-medium);
+}
+
+/* =================
+   NAVIGATION SECTION
+   ================= */
+
+.burger-nav-section {
+    padding: 2rem 2rem 1rem 2rem;
+    flex: 1;
+}
+
+.burger-section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary-brown);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0 0 1.5rem 0;
+    padding: 0.8rem 1.2rem;
+    background: linear-gradient(135deg, 
+        rgba(212, 165, 116, 0.15) 0%,
+        rgba(212, 165, 116, 0.08) 100%
+    );
+    border-radius: 10px;
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.burger-section-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(212, 165, 116, 0.2), 
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+
+.burger-section-title:hover::before {
+    left: 100%;
+}
+
+.burger-nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.burger-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(250, 248, 243, 0.8) 100%
+    );
+    border: 2px solid rgba(212, 165, 116, 0.2);
+    border-radius: 15px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 15px rgba(107, 68, 35, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.burger-nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(212, 165, 116, 0.2), 
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.burger-nav-link:hover::before {
+    left: 100%;
+}
+
+.burger-nav-link:hover {
+    background: linear-gradient(135deg, 
+        rgba(212, 165, 116, 0.2) 0%,
+        rgba(107, 68, 35, 0.1) 100%
+    );
+    color: var(--primary-brown);
+    transform: translateY(-2px) translateX(8px);
+    border-color: var(--gold-accent);
+    box-shadow: 
+        0 8px 25px rgba(107, 68, 35, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.burger-nav-icon {
+    font-size: 1.1rem;
+    color: var(--primary-brown);
+    flex-shrink: 0;
+}
+
+/* Special styles for therapy nav - Same as navbar */
+.burger-nav-link.therapy-nav {
+    background: linear-gradient(135deg, 
+        rgba(90, 124, 101, 0.15) 0%, 
+        rgba(90, 124, 101, 0.08) 100%
+    );
+    border-color: rgba(90, 124, 101, 0.3);
+    color: var(--green-accent);
+}
+
+.burger-nav-link.therapy-nav:hover {
+    background: linear-gradient(135deg, 
+        rgba(90, 124, 101, 0.25) 0%,
+        rgba(90, 124, 101, 0.15) 100%
+    );
+    border-color: var(--green-accent);
+    color: var(--green-accent);
+}
+
+.burger-nav-link.therapy-nav .burger-nav-icon {
+    color: var(--green-accent);
+}
+
+/* Active state - Same as navbar */
+.burger-nav-link[data-page="home"] {
+    background: linear-gradient(135deg, 
+        var(--gold-accent) 0%, 
+        rgba(212, 165, 116, 0.8) 100%
+    );
+    color: var(--primary-brown);
+    border-color: var(--primary-brown);
+    font-weight: 700;
+}
+
+/* =================
+   ACTIONS SECTION
+   ================= */
+
+.burger-actions-section {
+    padding: 1rem 2rem 2rem 2rem;
+    background: linear-gradient(135deg, 
+        rgba(250, 248, 243, 0.9) 0%,
+        rgba(244, 230, 211, 0.8) 100%
+    );
+    border-top: 2px solid rgba(212, 165, 116, 0.2);
+    backdrop-filter: blur(15px);
+}
+
+/* Search - Same as navbar */
+
+/* Icon Links - Same as navbar - IMPROVED DESIGN */
+.burger-icon-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    justify-content: space-between;
+}
+
+.burger-icon-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 60px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(250, 248, 243, 0.8) 100%
+    );
+    border: 2px solid rgba(212, 165, 116, 0.3);
+    border-radius: 15px;
+    color: var(--primary-brown);
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 15px rgba(107, 68, 35, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.burger-icon-link:hover {
+    background: linear-gradient(135deg, 
+        var(--primary-brown) 0%, 
+        var(--secondary-brown) 100%
+    );
+    color: var(--white);
+    transform: translateY(-3px) scale(1.02);
+    border-color: var(--gold-accent);
+    box-shadow: 
+        0 8px 25px rgba(107, 68, 35, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Counters - Same as navbar - IMPROVED DESIGN */
+.burger-cart-count,
+.burger-wishlist-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, var(--red-accent) 0%, #e74c3c 100%);
+    color: var(--white);
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: 
+        0 3px 10px rgba(197, 83, 74, 0.4),
+        0 1px 3px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--white);
+    font-family: 'Inter', sans-serif;
+}
+
+.burger-wishlist-count {
+    background: linear-gradient(135deg, var(--secondary-brown) 0%, var(--primary-brown) 100%);
+    box-shadow: 
+        0 3px 10px rgba(107, 68, 35, 0.4),
+        0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* User Dropdown - Exact same as navbar - IMPROVED DESIGN */
+.burger-user-dropdown {
+    position: relative;
+}
+
+.burger-user-account-btn {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(250, 248, 243, 0.8) 100%
+    );
+    border: 2px solid rgba(212, 165, 116, 0.3);
+    border-radius: 15px;
+    color: var(--primary-brown);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 15px rgba(107, 68, 35, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.burger-user-account-btn i {
+    font-size: 1.2rem;
+}
+
+.burger-user-account-btn::after {
+    content: 'Account';
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.burger-user-account-btn:hover {
+    background: linear-gradient(135deg, 
+        var(--primary-brown) 0%, 
+        var(--secondary-brown) 100%
+    );
+    color: var(--white);
+    transform: translateY(-2px);
+    border-color: var(--gold-accent);
+    box-shadow: 
+        0 8px 25px rgba(107, 68, 35, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.burger-user-dropdown-menu {
+    position: static;
+    width: 100%;
+    background: linear-gradient(135deg, 
+        rgba(250, 248, 243, 0.95) 0%,
+        rgba(244, 230, 211, 0.9) 100%
+    );
+    border: 2px solid rgba(212, 165, 116, 0.3);
+    border-radius: 15px;
+    margin-top: 1rem;
+    padding: 1rem;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 25px rgba(107, 68, 35, 0.15);
+    display: none;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.burger-user-dropdown.active .burger-user-dropdown-menu {
+    display: block;
+    opacity: 1;
+}
+
+/* Dropdown Header - Same as navbar */
+.burger-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, 
+        rgba(107, 68, 35, 0.1) 0%,
+        rgba(107, 68, 35, 0.05) 100%
+    );
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.burger-user-avatar {
+    font-size: 2rem;
+    color: var(--gold-accent);
+}
+
+.burger-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.burger-user-name {
+    font-weight: 700;
+    color: var(--primary-brown);
+    font-size: 0.9rem;
+}
+
+.burger-user-role {
+    font-size: 0.7rem;
+    color: var(--gold-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* Dropdown Sections - Same as navbar */
+.burger-dropdown-section {
+    margin-bottom: 1rem;
+}
+
+.burger-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(212, 165, 116, 0.15);
+}
+
+.burger-dropdown-item:hover {
+    background: rgba(212, 165, 116, 0.15);
+    color: var(--primary-brown);
+    transform: translateX(5px);
+    border-color: var(--gold-accent);
+}
+
+.burger-dropdown-item i {
+    width: 16px;
+    color: var(--primary-brown);
+}
+
+/* Artist Section - Same as navbar */
+.burger-artist-section {
+    background: linear-gradient(135deg, 
+        rgba(90, 124, 101, 0.1) 0%,
+        rgba(90, 124, 101, 0.05) 100%
+    );
+    border: 1px solid rgba(90, 124, 101, 0.2);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.burger-dropdown-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--green-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(90, 124, 101, 0.2);
+}
+
+.burger-artist-item {
+    background: rgba(90, 124, 101, 0.08) !important;
+    border-color: rgba(90, 124, 101, 0.2) !important;
+    color: var(--green-accent) !important;
+}
+
+.burger-artist-item:hover {
+    background: rgba(90, 124, 101, 0.15) !important;
+    border-color: var(--green-accent) !important;
+    color: var(--green-accent) !important;
+}
+
+.burger-artist-item i {
+    color: var(--green-accent) !important;
+}
+
+/* Divider - Same as navbar */
+.burger-dropdown-divider {
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(212, 165, 116, 0.3), 
+        transparent
+    );
+    border: none;
+    margin: 1rem 0;
+}
+
+/* Logout Item - Same as navbar */
+.burger-logout-item {
+    background: linear-gradient(135deg, 
+        rgba(197, 83, 74, 0.1) 0%,
+        rgba(197, 83, 74, 0.05) 100%
+    ) !important;
+    border-color: rgba(197, 83, 74, 0.3) !important;
+    color: var(--red-accent) !important;
+}
+
+.burger-logout-item:hover {
+    background: rgba(197, 83, 74, 0.15) !important;
+    border-color: var(--red-accent) !important;
+    color: var(--red-accent) !important;
+}
+
+.burger-logout-item i {
+    color: var(--red-accent) !important;
+}
+
+/* =================
+   RESPONSIVE DESIGN
+   ================= */
+
+@media (max-width: 480px) {
+    .burger-menu-container {
+        max-width: 90%;
+    }
+    
+    .burger-menu-header {
+        padding: 1.5rem 1.5rem 1rem 1.5rem;
+    }
+    
+    .burger-nav-section,
+    .burger-actions-section {
+        padding: 1.5rem 1.5rem 1rem 1.5rem;
+    }
+    
+    .burger-nav-link {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.85rem;
+    }
+    
+    .burger-search-input {
+        padding: 0.9rem 3.2rem 0.9rem 1.3rem;
+        font-size: 0.9rem;
+    }
+    
+    .burger-search-btn {
+        width: 36px;
+        height: 36px;
+        right: 0.7rem;
+    }
+    
+    .burger-icon-link {
+        height: 55px;
+        font-size: 1.2rem;
+    }
+    
+    .burger-user-account-btn {
+        padding: 1rem 1.3rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* =================
+   ANIMATIONS
+   ================= */
+
+@keyframes slideInStagger {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.burger-menu-overlay.active .burger-nav-link {
+    animation: slideInStagger 0.4s ease-out forwards;
+}
+
+.burger-menu-overlay.active .burger-nav-link:nth-child(1) { animation-delay: 0.1s; }
+.burger-menu-overlay.active .burger-nav-link:nth-child(2) { animation-delay: 0.15s; }
+.burger-menu-overlay.active .burger-nav-link:nth-child(3) { animation-delay: 0.2s; }
+.burger-menu-overlay.active .burger-nav-link:nth-child(4) { animation-delay: 0.25s; }
+.burger-menu-overlay.active .burger-nav-link:nth-child(5) { animation-delay: 0.3s; }
+.burger-menu-overlay.active .burger-nav-link:nth-child(6) { animation-delay: 0.35s; }
+
+.burger-menu-overlay.active .burger-actions-section {
+    animation: slideInStagger 0.5s ease-out 0.4s both;
+}
+
+/* =================
+   ACCESSIBILITY
+   ================= */
+
+/* Focus styles for keyboard navigation */
+.burger-menu-close:focus,
+.burger-nav-link:focus,
+.burger-search-input:focus,
+.burger-search-btn:focus,
+.burger-icon-link:focus,
+.burger-user-account-btn:focus,
+.burger-dropdown-item:focus {
+    outline: 2px solid var(--gold-accent);
+    outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .burger-menu-container {
+        border-right: 3px solid var(--primary-brown);
+    }
+    
+    .burger-nav-link,
+    .burger-dropdown-item {
+        border: 2px solid var(--primary-brown);
+    }
+    
+    .burger-section-title {
+        border: 2px solid var(--primary-brown);
+        background: var(--cream);
+    }
+}

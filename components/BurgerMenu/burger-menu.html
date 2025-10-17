@@ -1,0 +1,133 @@
+<!-- Burger Menu Component -->
+<div class="burgerMenuOverlay" id="burger-menu-overlay">
+    <div class="burgerMenuContainer">
+        <!-- Header -->
+        <div class="burgerMenuHeader">
+            <a href="index.html" class="burgerMenuLogo">Yadawity</a>
+            <button class="burgerMenuClose" id="burger-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="burgerNavLinks">
+            <a href="index.html" class="burgerNavLink" data-page="home">
+                <span>Home</span>
+            </a>
+            <a href="gallery.html" class="burgerNavLink" data-page="gallery">
+                <span>Gallery</span>
+            </a>
+            <a href="artworks.html" class="burgerNavLink" data-page="artworks">
+                <span>Artworks</span>
+            </a>
+            
+            <a href="about.html" class="burgerNavLink" data-page="about">
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="burgerNavLink" data-page="contact">
+                <span>Contact</span>
+            </a>
+            <a href="courses.html" class="burgerNavLink therapyNav" data-page="courses">
+                <span>Art Therapy</span>
+            </a>
+        </div>
+
+        <!-- Quick Actions Section -->
+        <div class="burgerQuickActions">
+            <div class="burgerQuickActionsLabel">QUICK ACTIONS</div>
+            
+            <!-- Search -->
+            <div class="burgerSearchContainer">
+                <input 
+                    type="text" 
+                    class="burgerSearchInput" 
+                    id="burger-search-input"
+                    placeholder="Search artworks, artists..."
+                    autocomplete="off"
+                >
+                <button class="burgerSearchBtn" id="burger-search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <!-- Action Links -->
+            <a href="cart.html" class="burgerActionLink" id="burgerCartLink">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="burgerActionText">Cart</span>
+                <span class="burgerActionCounter" id="burger-cart-count">3</span>
+            </a>
+
+            <a href="wishlist.html" class="burgerActionLink" id="burgerWishlistLink">
+                <i class="fas fa-heart"></i>
+                <span class="burgerActionText">Wishlist</span>
+                <span class="burgerActionCounter burgerWishlistCount" id="burger-wishlist-count">7</span>
+            </a>
+
+            <a href="favorites.html" class="burgerActionLink">
+                <i class="fas fa-star"></i>
+                <span class="burgerActionText">Favorites</span>
+            </a>
+
+            <!-- User Account Dropdown -->
+            <div class="burgerUserDropdown" id="burgerUserDropdown">
+                <a href="#" class="burgerActionLink" id="burger-user-account-btn">
+                    <i class="fas fa-user"></i>
+                    <span class="burgerActionText">Account</span>
+                    <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 0.7rem;"></i>
+                </a>
+                
+                <!-- Dropdown Menu -->
+                <div class="burgerUserDropdownMenu" id="burgerUserMenu">
+                    <a href="profile.html" class="burgerDropdownItem">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Profile</span>
+                    </a>
+                    
+                    <a href="orders.html" class="burgerDropdownItem">
+                        <i class="fas fa-box"></i>
+                        <span>My Orders</span>
+                    </a>
+                    
+                    <a href="settings.html" class="burgerDropdownItem">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    
+                    <hr class="burgerDropdownDivider">
+                    
+                    <a href="login.html" class="burgerDropdownItem" id="burgerLoginLogout">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Artist Portal Section - Only visible for artists -->
+            <div class="burgerArtistPortal mobile-artist-section" id="mobileArtistSection" style="display: none;">
+                <div class="burgerQuickActionsLabel" style="margin-top: 20px;">
+                    <i class="fas fa-palette"></i> ARTIST PORTAL
+                </div>
+                
+                <a href="artistPortal.php#dashboard-section" class="burgerActionLink">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span class="burgerActionText">Artist Dashboard</span>
+                </a>
+                
+                <a href="artistPortal.php#profile-section" class="burgerActionLink">
+                    <i class="fas fa-user-edit"></i>
+                    <span class="burgerActionText">Manage Profile</span>
+                </a>
+                
+                <a href="artistPortal.php#reviews-section" class="burgerActionLink">
+                    <i class="fas fa-star"></i>
+                    <span class="burgerActionText">User Reviews</span>
+                </a>
+                
+                <a href="artistPortal.php#orders-section" class="burgerActionLink">
+                    <i class="fas fa-box"></i>
+                    <span class="burgerActionText">My Orders</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

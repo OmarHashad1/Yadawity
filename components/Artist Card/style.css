@@ -1,0 +1,245 @@
+
+.profile-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 320px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: slideUp 0.8s ease-out;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-header {
+    position: relative;
+    height: 280px;
+    background: linear-gradient(135deg, #d4c4b0 0%, #b8a690 100%);
+    overflow: hidden;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover .profile-image {
+    transform: scale(1.05);
+}
+
+.rating-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, rgba(212, 196, 176, 0.95) 0%, rgba(184, 166, 144, 0.90) 100%);
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+    animation: fadeInRight 1s ease-out 0.5s both;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.rating-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.stars-container {
+    display: flex;
+    gap: 1px;
+    margin-right: 2px;
+}
+
+.star {
+    color: #FFD700;
+    font-size: 10px;
+    animation: starGlow 2s infinite alternate;
+    transition: all 0.3s ease;
+}
+
+.star:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 2px #FFD700);
+}
+
+.star:nth-child(1) { animation-delay: 0s; }
+.star:nth-child(2) { animation-delay: 0.1s; }
+.star:nth-child(3) { animation-delay: 0.2s; }
+.star:nth-child(4) { animation-delay: 0.3s; }
+.star:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes starGlow {
+    0% { 
+        text-shadow: 0 0 3px rgba(255, 215, 0, 0.3);
+        transform: scale(1);
+    }
+    100% { 
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
+        transform: scale(1.05);
+    }
+}
+
+.rating-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+}
+
+.academy-badge {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    animation: fadeInLeft 1s ease-out 0.3s both;
+    backdrop-filter: blur(5px);
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.profile-content {
+    padding: 30px 25px;
+    text-align: center;
+    background: linear-gradient(180deg, #faf8f5 0%, #f2ede6 100%);
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4a3c2a;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-specialty {
+    color: #8B7355;
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-style: italic;
+    animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    animation: fadeInUp 1s ease-out 1s both;
+}
+
+.masterpieces-count {
+    color: #7f8c8d;
+    font-size: 14px;
+    position: relative;
+}
+
+.masterpieces-count::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #d4c4b0, #b8a690);
+    transition: width 0.3s ease;
+}
+
+.profile-card:hover .masterpieces-count::after {
+    width: 100%;
+}
+
+.view-portfolio-btn {
+    background: linear-gradient(135deg, #8B7355 0%, #6b5a47 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    width: 70%;
+    animation: fadeInUp 1s ease-out 1.2s both;
+}
+
+.view-portfolio-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.view-portfolio-btn:hover::before {
+    left: 100%;
+}
+
+.view-portfolio-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 115, 85, 0.4);
+}
+
+.view-portfolio-btn:active {
+    transform: translateY(0);
+}

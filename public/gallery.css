@@ -1,0 +1,373 @@
+
+:root {
+  --primary-light: #fefefe;
+  --secondary-light: #faf8f5;
+  --accent-red: #8b1538;
+  --dark-red: #7f1d1d;
+  --burgundy: #991b1b;
+  --dark-brown: #4a2c17;
+  --medium-brown: #6b4423;
+  --light-brown: #8b7355;
+  --beige: #d4c4b0;
+  --beige-light: #e8dcc6bd;
+  --gold: #d4af37;
+  --gold-light: #f4d03f;
+  --cream: #f5f5dc84;
+  --text-primary: #2c1810;
+  --text-secondary: #4a2c17;
+  --text-muted: #6b4423;
+  --background-primary: #fefefe;
+  --background-secondary: #faf8f5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Playfair Display", "Inter", sans-serif;
+  background: url(/image/photo.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  color: white;
+  line-height: 1.6;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(139, 21, 56, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(107, 68, 35, 0.3) 0%, transparent 50%),
+              linear-gradient(135deg, rgba(44, 24, 16, 0.8) 0%, rgba(74, 44, 23, 0.6) 100%);
+  z-index: -1;
+}
+
+
+
+/* Hero Section */
+
+.supportHero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.heroBackgroundImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  z-index: 2;
+}
+
+.artisanDecorativeDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.artisanDecorativeDivider::before,
+.artisanDecorativeDivider::after {
+  content: "";
+  width: 60px;
+  height: 1px;
+  background-color: white;
+}
+
+.artisanOrnamentalIcon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+.sectionHeader h1 {
+  font-size: 3rem;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.heroContent {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+}
+
+.heroTitle {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Redesigned Gallery Options */
+.galleryOptions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    justify-content: center;
+    align-items: start;
+}
+
+.optionCard {
+    position: relative;
+    background: linear-gradient(135deg, var(--beige-light) 0%, var(--beige) 100%);
+    border: 2px solid var(--light-brown);
+    border-radius: 3px;
+    box-shadow: 0 8px 20px rgba(42, 24, 16, 0.15), 
+                0 4px 10px rgba(42, 24, 16, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    padding: 1.5rem 1.5rem;
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.optionCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(42, 24, 16, 0.2), 
+                0 8px 20px rgba(42, 24, 16, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.optionCard .optionIcon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--medium-brown) 0%, var(--light-brown) 100%);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 8px 25px rgba(107, 68, 35, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.optionCard .optionIcon i {
+    font-size: 24px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.optionCard:hover .optionIcon {
+    transform: translateY(-5px) scale(1.05);
+}
+
+#localOption:hover .optionIcon {
+    box-shadow: 0 12px 30px rgba(62, 39, 35, 0.4);
+}
+
+#virtualOption:hover .optionIcon {
+    box-shadow: 0 12px 30px rgba(141, 110, 99, 0.4);
+}
+
+.optionCard h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+    margin-bottom: 1rem;
+    text-shadow: none;
+}
+
+.optionCard p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-shadow: none;
+}
+
+.optionCard .tags {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.optionCard .tag {
+    background: rgba(107, 68, 35, 0.1);
+    color: var(--dark-brown);
+    padding: 0.5rem 1.25rem;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(107, 68, 35, 0.2);
+    transition: all 0.3s ease;
+}
+
+
+.optionCard .optionBtn {
+    background: linear-gradient(135deg, var(--brown-medium) 0%, var(--brown-light) 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    width: 40%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 6px 20px rgba(139, 115, 85, 0.4);
+    text-decoration: none;
+}
+
+.optionCard .optionBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.optionCard .optionBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 115, 85, 0.4);
+    transform: translateY(0);
+}
+
+.optionCard .optionBtn:hover::before {
+    left: 100%;
+}
+
+.optionCard .optionBtn i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.optionCard:hover .optionBtn i {
+    transform: translateX(3px);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .heroContent {
+    padding: 1rem;
+  }
+  .sectionHeader h1 {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+  }
+  .galleryOptions {
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+    justify-content: center;
+  }
+  .optionCard {
+    min-height: 320px;
+    max-width: 350px;
+    width: 100%;
+    padding: 1rem 0.5rem;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .sectionHeader h1 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+  .galleryOptions {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0;
+    justify-content: center;
+  }
+  .optionCard {
+    min-height: 200px;
+    max-width: 98vw;
+    width: 100%;
+    padding: 0.75rem 0.25rem;
+    font-size: 0.95rem;
+    margin: 0 auto;
+  }
+  .optionCard h2 {
+    font-size: 1.1rem;
+  }
+  .optionCard .optionBtn {
+    width: 80%;
+    font-size: 12px;
+    padding: 10px 0;
+  }
+  .artisanDecorativeDivider {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Loading Animation */
+
+

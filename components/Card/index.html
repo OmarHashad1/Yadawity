@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Art Card with Icons</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" /></head>
+<body>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-image">
+        <img src="./pexels-photo-1266808.jpeg" alt="The Noble Steed" />
+        <div class="auth-badge"><i class="fas fa-certificate"></i> Authenticated</div>
+        <div class="hover-buttons">
+          <button class="hover-btn eye"><i class="fas fa-eye"></i></button>
+          <button class="hover-btn heart"><i class="fas fa-heart"></i></button>
+          <button class="hover-btn cart"><i class="fas fa-shopping-cart"></i></button>
+        </div>
+      </div>
+      <div class="card-details">
+        <h2>The Noble Steed</h2>
+        <p>by <strong>Master Giovanni Rossi</strong></p>
+        <p>1885 • Bronze</p>
+        <p>24&quot; × 18&quot; × 12&quot;</p>
+        <p class="description">This rare sculpture, cast in the late 19th century, exemplifies fine detail and craftsmanship from the classical European era. A true gem for collectors and historians alike.</p>
+        <div class="price-section">
+          <span class="price">$35,000</span>
+          <button class="acquire-btn-modern" onclick="acquire()">Acquire Piece</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

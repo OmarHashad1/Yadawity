@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery - Masonry Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f5f3f0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="galleryContainer">
+        <div class="artworkCard">
+            <img class="artworkImage" src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=280&fit=crop" alt="Abstract Composition" style="height: 280px; object-fit: cover;">
+            <div class="artworkInfo">
+                <h3 class="artworkTitle">Abstract Composition</h3>
+                <p class="artworkPrice">EGP 12,000</p>
+                <p class="artworkArtist">by Gohan Seoude</p>
+                <p class="artworkDescription">Oil on canvas expressionist painting featuring vibrant colors and dynamic forms that capture the essence of...</p>
+                <button class="addToCart">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="artworkCard">
+            <img class="artworkImage" src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=320&fit=crop" alt="Urban Portrait" style="height: 320px; object-fit: cover;">
+            <div class="artworkInfo">
+                <h3 class="artworkTitle">Urban Portrait</h3>
+                <p class="artworkPrice">EGP 120,000</p>
+                <p class="artworkArtist">by Hossam Salr</p>
+                <p class="artworkDescription">Expressionistic mixed media painting on wood board capturing the raw emotion and contemporary quality of urban life through bold...</p>
+                <button class="addToCart">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="artworkCard">
+            <img class="artworkImage" src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop" alt="Contemplative Study" style="height: 400px; object-fit: cover;">
+            <div class="artworkInfo">
+                <h3 class="artworkTitle">Contemplative Study</h3>
+                <p class="artworkPrice">EGP 78,000</p>
+                <p class="artworkArtist">by Khalid Elhamy</p>
+                <p class="artworkDescription">Captive of lines portrait oil on canvas that explores the depth of human emotion through masterful use of light and...</p>
+                <button class="addToCart">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="artworkCard">
+            <img class="artworkImage" src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=200&fit=crop" alt="Figure in Motion" style="height: 200px; object-fit: cover;">
+            <div class="artworkInfo">
+                <h3 class="artworkTitle">Figure in Motion</h3>
+                <p class="artworkPrice">EGP 25,000</p>
+                <p class="artworkArtist">by Eslam Saif Elnaser</p>
+                <p class="artworkDescription">Expressionistic charcoal and soft pastel on paper capturing the fluidity and grace of the human form in a moment of...</p>
+                <button class="addToCart">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="artworkCard">
+            <img class="artworkImage" src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=240&fit=crop" alt="Textured Landscape" style="height: 240px; object-fit: cover;">
+            <div class="artworkInfo">
+                <h3 class="artworkTitle">Textured Landscape</h3>
+                <p class="artworkPrice">EGP 50,000</p>
+                <p class="artworkArtist">by Mostaz Kamal</p>
+                <p class="artworkDescription">Abstract mixed media painting on canvas featuring rich textures and earthy tones that evoke the beauty of natural...</p>
+                <button class="addToCart">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="artworkCard">
+            <img class="artworkImage" src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=360&fit=crop" alt="Emotional Depth" style="height: 360px; object-fit: cover;">
+            <div class="artworkInfo">
+                <h3 class="artworkTitle">Emotional Depth</h3>
+                <p class="artworkPrice">EGP 95,000</p>
+                <p class="artworkArtist">by Nadia Hassan</p>
+                <p class="artworkDescription">Contemporary oil painting that delves into the psychological complexity of human experience through bold colors...</p>
+                <button class="addToCart">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="artworkCard">
+            <img class="artworkImage" src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop" alt="Modern Expression" style="height: 300px; object-fit: cover;">
+            <div class="artworkInfo">
+                <h3 class="artworkTitle">Modern Expression</h3>
+                <p class="artworkPrice">EGP 45,000</p>
+                <p class="artworkArtist">by Ahmed Mostafa</p>
+                <p class="artworkDescription">Bold acrylic painting that explores contemporary themes through abstract forms and vibrant color palettes...</p>
+                <button class="addToCart">Add to cart</button>
+            </div>
+        </div>
+
+        <div class="artworkCard">
+            <img class="artworkImage" src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=220&fit=crop" alt="Classical Revival" style="height: 220px; object-fit: cover;">
+            <div class="artworkInfo">
+                <h3 class="artworkTitle">Classical Revival</h3>
+                <p class="artworkPrice">EGP 180,000</p>
+                <p class="artworkArtist">by Mariam Farouk</p>
+                <p class="artworkDescription">Oil on canvas masterpiece that pays homage to classical painting techniques while incorporating modern sensibilities...</p>
+                <button class="addToCart">Add to cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive functionality
+        document.querySelectorAll('.addToCart').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.artworkCard');
+                const title = card.querySelector('.artworkTitle').textContent;
+                
+                // Simple feedback animation
+                this.textContent = 'Added!';
+                this.style.backgroundColor = '#28a745';
+                
+                setTimeout(() => {
+                    this.textContent = 'Add to cart';
+                    this.style.backgroundColor = '#4a3c2a';
+                }, 2000);
+                
+                console.log(`Added "${title}" to cart`);
+            });
+        });
+
+        // Hover effects for cards
+        document.querySelectorAll('.artworkCard').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,799 @@
+# ARTIST PORTAL STATISTICS SECTION - COMPREHENSIVE EXPLANATION
+
+## OVERVIEW
+The Artist Portal Statistics section is a comprehensive dashboard that displays real-time data about an artist's performance on the platform. It shows artworks, galleries, auctions, and various metrics in an organized, visual format using carousel displays and statistical cards.
+
+## FILE STRUCTURE AND COMPONENTS
+
+### 1. MAIN FILES INVOLVED
+- `artistPortal.php` (Main portal page with statistics HTML structure)
+- `public/artist-portal.js` (Frontend JavaScript logic)
+- `API/getArtistStatistics.php` (Backend API for fetching statistics)
+- `public/artist-portal.css` (Styling for the statistics section)
+
+## DETAILED CODE BREAKDOWN
+
+### A. HTML STRUCTURE (artistPortal.php)
+
+The statistics section is defined in artistPortal.php starting around line 356:
+
+```php
+<!-- Statistics Section -->
+<div id="statistics-section" class="content-section">
+    <div class="statistics-container">
+        <div class="statistics-header">
+            <h1><i class="fas fa-chart-bar"></i> My Statistics</h1>
+            <p>Overview of your artworks, galleries, and auctions performance</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="statisticsLoading" style="display: none;">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading statistics...</p>
+            </div>
+        </div>
+
+        <!-- Content Container -->
+        <div id="statisticsContent"></div>
+
+        <!-- Statistics Dashboard Cards -->
+        <div class="statsGrid">
+            <div class="statCard">
+                <div class="statIcon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="statContent">
+                    <h3 id="artwork-count">0</h3>
+                    <p>ARTWORKS</p>
+                </div>
+            </div>
+            
+            <div class="statCard">
+                <div class="statIcon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="statContent">
+                    <h3 id="galleries-count">0</h3>
+                    <p>GALLERIES</p>
+                </div>
+            </div>
+            
+            <div class="statCard">
+                <div class="statIcon">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <div class="statContent">
+                    <h3 id="auctions-count">0</h3>
+                    <p>AUCTIONS</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Artworks Section -->
+        <div class="stats-section">
+            <div class="stats-section-header">
+                <div class="stats-section-title">
+                    <i class="fas fa-palette stats-section-icon"></i>
+                    <h2>My Artworks</h2>
+                    <span class="stats-count" id="artworks-count">0</span>
+                </div>
+            </div>
+            <div class="artworks-section-container">
+                <div class="stats-swiper artworks-swiper">
+                    <div class="swiper-wrapper" id="artworks-container">
+                        <!-- Artworks will be loaded here -->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Virtual Galleries Section -->
+        <div class="stats-section">
+            <div class="stats-section-header">
+                <div class="stats-section-title">
+                    <i class="fas fa-desktop stats-section-icon"></i>
+                    <h2>Virtual Galleries</h2>
+                    <span class="stats-count" id="virtual-galleries-count">0</span>
+                </div>
+            </div>
+            <div class="artworks-section-container">
+                <div class="stats-swiper virtual-galleries-swiper">
+                    <div class="swiper-wrapper" id="virtual-galleries-container">
+                        <!-- Virtual galleries will be loaded here -->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Local Galleries Section -->
+        <div class="stats-section">
+            <div class="stats-section-header">
+                <div class="stats-section-title">
+                    <i class="fas fa-building stats-section-icon"></i>
+                    <h2>Local Galleries</h2>
+                    <span class="stats-count" id="local-galleries-count">0</span>
+                </div>
+            </div>
+            <div class="artworks-section-container">
+                <div class="stats-swiper local-galleries-swiper">
+                    <div class="swiper-wrapper" id="local-galleries-container">
+                        <!-- Local galleries will be loaded here -->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auctions Section -->
+        <div class="stats-section">
+            <div class="stats-section-header">
+                <div class="stats-section-title">
+                    <i class="fas fa-gavel stats-section-icon"></i>
+                    <h2>My Auctions</h2>
+                    <span class="stats-count" id="auctions-count">0</span>
+                </div>
+            </div>
+            <div class="artworks-section-container">
+                <div class="stats-swiper auctions-swiper">
+                    <div class="swiper-wrapper" id="auctions-container">
+                        <!-- Auctions will be loaded here -->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+### B. JAVASCRIPT FUNCTIONALITY (public/artist-portal.js)
+
+#### 1. STATISTICS LOADING TRIGGER
+
+In the section switching logic (around line 215), when the statistics section is accessed:
+
+```javascript
+// Load statistics data when statistics section is accessed
+if (sectionName === 'statistics') {
+    loadArtistStatistics();
+}
+```
+
+#### 2. MAIN STATISTICS LOADING FUNCTION
+
+The core function `loadArtistStatistics()` (around line 6700):
+
+```javascript
+async function loadArtistStatistics() {
+    try {
+        // Get credentials first to ensure authentication
+        const credentialData = await getUserCredentials();
+        
+        if (!credentialData || !credentialData.authenticated || credentialData.user_type !== 'artist') {
+            console.log('Artist not authenticated or wrong user type, showing empty statistics');
+            showEmptyStatistics();
+            return;
+        }
+        
+        const userId = credentialData.user_id;
+        console.log('Authenticated user ID:', userId);
+        
+        // COMPLETE cache clearing - destroy all cached data
+        window.currentArtistData = null;
+        
+        // Clear localStorage if any cached data exists
+        if (typeof(Storage) !== "undefined") {
+            localStorage.removeItem('artistData');
+            localStorage.removeItem('statisticsData');
+            localStorage.clear(); // Clear all localStorage
+        }
+        
+        // Clear sessionStorage
+        if (typeof(Storage) !== "undefined") {
+            sessionStorage.clear();
+        }
+        
+        // Clear any potential cached DOM data
+        const containers = ['artworks-container', 'virtual-galleries-container', 'local-galleries-container', 'auctions-container'];
+        containers.forEach(containerId => {
+            const container = document.getElementById(containerId);
+            if (container) {
+                container.innerHTML = '';
+            }
+        });
+        
+        // Show loading state
+        const loadingElement = document.getElementById('statisticsLoading');
+        const contentElement = document.getElementById('statisticsContent');
+        
+        if (loadingElement) loadingElement.style.display = 'block';
+        if (contentElement) contentElement.style.display = 'none';
+
+        // Fetch real data from API using authenticated request with user_id
+        console.log('Fetching artist statistics for user ID:', userId);
+        const timestamp = new Date().getTime(); // Cache buster
+        const randomParam = Math.random().toString(36).substring(7); // Additional randomness
+        const response = await fetch(`./API/getArtistStatistics.php?user_id=${userId}&t=${timestamp}&r=${randomParam}&clearCache=1`, {
+            method: 'GET',
+            credentials: 'include', // Ensure cookies are sent
+            headers: {
+                'Content-Type': 'application/json',
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0',
+                'X-Clear-Session': '1' // Custom header to indicate session should be cleared
+            }
+        });
+        
+        console.log('API response status:', response.status);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Artist statistics data:', data);
+        
+        if (!data.success) {
+            throw new Error(data.message || 'Failed to fetch artist statistics');
+        }
+
+        // Store artist data globally for use in other functions
+        window.currentArtistData = {
+            artist_name: data.data.artist_info ? `${data.data.artist_info.first_name || ''} ${data.data.artist_info.last_name || ''}`.trim() : 'Artist'
+        };
+
+        // Update dashboard cards with real data
+        updateDashboardStats(data.data.summary);
+
+        // Transform and render each section with real data
+        const artworks = transformArtworksData(data.data.products || []);
+        const virtualGalleries = transformVirtualGalleriesData(data.data.virtual_galleries || []);
+        const localGalleries = transformLocalGalleriesData(data.data.local_galleries || []);
+        const auctions = transformAuctionsData(data.data.auctions || []);
+
+        // Render each section
+        renderArtworksSection(artworks);
+        renderVirtualGalleriesSection(virtualGalleries);
+        renderLocalGalleriesSection(localGalleries);
+        renderAuctionsSection(auctions);
+
+        // Hide loading and show content
+        if (loadingElement) loadingElement.style.display = 'none';
+        if (contentElement) contentElement.style.display = 'block';
+
+        // Initialize swipers after content is loaded
+        setTimeout(() => {
+            initializeSwipers();
+        }, 100);
+
+        // Update swipers after content is loaded
+        setTimeout(() => {
+            if (artworksSwiper) artworksSwiper.update();
+            if (virtualGalleriesSwiper) virtualGalleriesSwiper.update();
+            if (localGalleriesSwiper) localGalleriesSwiper.update();
+            if (auctionsSwiper) auctionsSwiper.update();
+        }, 200);
+
+    } catch (error) {
+        console.error('Error loading artist statistics:', error);
+        
+        // Hide loading state and show empty states
+        const loadingElement = document.getElementById('statisticsLoading');
+        const contentElement = document.getElementById('statisticsContent');
+        
+        if (loadingElement) loadingElement.style.display = 'none';
+        if (contentElement) contentElement.style.display = 'block';
+        
+        // Show empty states for all sections
+        renderArtworksSection([]);
+        renderVirtualGalleriesSection([]);
+        renderLocalGalleriesSection([]);
+        renderAuctionsSection([]);
+    }
+}
+```
+
+#### 3. DASHBOARD STATISTICS UPDATE
+
+The function `updateDashboardStats()` updates the numerical statistics cards:
+
+```javascript
+function updateDashboardStats(summaryData) {
+    try {
+        // Provide default values if summaryData is missing or incomplete
+        const summary = summaryData || {};
+        
+        // Update artwork count (only artworks, not auctions)
+        const artworkCountElement = document.getElementById('artwork-count');
+        if (artworkCountElement) {
+            artworkCountElement.textContent = summary.total_artworks || 0;
+        }
+
+        // Update galleries count
+        const galleriesCountElement = document.getElementById('galleries-count');
+        if (galleriesCountElement) {
+            galleriesCountElement.textContent = summary.total_galleries || 0;
+        }
+
+        // Update auctions count
+        const auctionsCountElement = document.getElementById('auctions-count');
+        if (auctionsCountElement) {
+            auctionsCountElement.textContent = summary.total_auctions || 0;
+        }
+
+        // Update orders count
+        const ordersCountElement = document.getElementById('orders-count');
+        if (ordersCountElement) {
+            ordersCountElement.textContent = summary.total_sales || 0;
+        }
+    } catch (error) {
+        console.error('Error updating dashboard stats:', error);
+        
+        // Set default values on error
+        const elements = [
+            { id: 'artwork-count', value: '0' },
+            { id: 'galleries-count', value: '0' },
+            { id: 'auctions-count', value: '0' },
+            { id: 'orders-count', value: '0' }
+        ];
+        
+        elements.forEach(({ id, value }) => {
+            const element = document.getElementById(id);
+            if (element) element.textContent = value;
+        });
+    }
+}
+```
+
+#### 4. DATA TRANSFORMATION FUNCTIONS
+
+The system transforms raw API data into UI-friendly format using several functions:
+
+**A. Artworks Data Transformation:**
+```javascript
+function transformArtworksData(artworks) {
+    return artworks.map(artwork => ({
+        id: artwork.id,
+        title: artwork.title || 'Untitled',
+        description: artwork.description || 'No description available',
+        price: parseFloat(artwork.price) || 0,
+        image: artwork.image || '/image/placeholder-artwork.jpg',
+        dimensions: artwork.dimensions || 'N/A',
+        type: artwork.type || 'Artwork',
+        sales_count: artwork.sales_count || 0,
+        total_earnings: artwork.total_earnings || 0,
+        cart_count: artwork.cart_count || 0,
+        wishlist_count: artwork.wishlist_count || 0,
+        category: artwork.type || 'Uncategorized',
+        status: (artwork.status || 'active').toLowerCase()
+    }));
+}
+```
+
+**B. Virtual Galleries Data Transformation:**
+```javascript
+function transformVirtualGalleriesData(galleries) {
+    return galleries.map(gallery => ({
+        id: gallery.id,
+        title: gallery.title || 'Untitled Gallery',
+        description: gallery.description || 'No description available',
+        price: parseFloat(gallery.price) || 0,
+        duration: gallery.duration || 0,
+        artworks_count: gallery.artwork_count || 0,
+        status: (gallery.status || 'active').toLowerCase().replace(' ', '_'),
+        image: gallery.image || '/image/default-gallery.jpg'
+    }));
+}
+```
+
+**C. Local Galleries Data Transformation:**
+```javascript
+function transformLocalGalleriesData(galleries) {
+    return galleries.map(gallery => ({
+        id: gallery.id,
+        title: gallery.title || 'Untitled Gallery',
+        description: gallery.description || 'No description available',
+        address: gallery.address || 'Address not specified',
+        city: gallery.city || 'City not specified',
+        phone: gallery.phone || 'Phone not specified',
+        price: parseFloat(gallery.price) || 0,
+        artworks_count: gallery.artwork_count || 0,
+        status: (gallery.status || 'active').toLowerCase().replace(' ', '_'),
+        image: gallery.image || './image/default-gallery.jpg'
+    }));
+}
+```
+
+**D. Auctions Data Transformation:**
+```javascript
+function transformAuctionsData(auctions) {
+    return auctions.map(auction => ({
+        id: auction.auction_id,
+        artwork_id: auction.artwork_id,
+        title: auction.artwork_title || 'Untitled Auction',
+        description: auction.artwork_description || 'No description available',
+        starting_bid: parseFloat(auction.starting_bid) || 0,
+        current_bid: parseFloat(auction.current_bid) || parseFloat(auction.starting_bid) || 0,
+        dimensions: auction.dimensions || 'N/A',
+        type: auction.artwork_type || 'Artwork',
+        status: auction.status_display || auction.status || 'Unknown',
+        start_time: auction.start_time || 'N/A',
+        end_time: auction.end_time || 'N/A',
+        image: auction.artwork_image || '/image/placeholder-artwork.jpg'
+    }));
+}
+```
+
+### C. BACKEND API (API/getArtistStatistics.php)
+
+#### 1. AUTHENTICATION AND VALIDATION
+
+The API starts with comprehensive authentication:
+
+```php
+// Function to validate user cookie and get user ID
+function validateUserCookie($conn) {
+    if (!isset($_COOKIE['user_login'])) {
+        error_log("getArtistStatistics: No user_login cookie found");
+        return null;
+    }
+    
+    $cookieValue = $_COOKIE['user_login'];
+    
+    // Extract user ID from cookie (format: user_id_hash)
+    $parts = explode('_', $cookieValue, 2);
+    if (count($parts) !== 2) {
+        error_log("getArtistStatistics: Invalid cookie format");
+        return null;
+    }
+    
+    $user_id = (int)$parts[0];
+    $provided_hash = $parts[1];
+    
+    if ($user_id <= 0) {
+        error_log("getArtistStatistics: Invalid user_id: " . $user_id);
+        return null;
+    }
+    
+    // Get user data
+    $stmt = $conn->prepare("SELECT email, is_active FROM users WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows === 0) {
+        error_log("getArtistStatistics: User not found: " . $user_id);
+        return null;
+    }
+    
+    $user = $result->fetch_assoc();
+    
+    // Check if user is active
+    if (!$user['is_active']) {
+        error_log("getArtistStatistics: User not active: " . $user_id);
+        return null;
+    }
+    
+    // Get all active login sessions for this user with session_id
+    $session_stmt = $conn->prepare("
+        SELECT session_id, login_time 
+        FROM user_login_sessions 
+        WHERE user_id = ? AND is_active = 1 
+        ORDER BY login_time DESC
+    ");
+    $session_stmt->bind_param("i", $user_id);
+    $session_stmt->execute();
+    $session_result = $session_stmt->get_result();
+    
+    // Try to validate the hash against any active session using the same method as login
+    $valid_session = false;
+    $session_count = 0;
+    while ($session = $session_result->fetch_assoc()) {
+        $session_count++;
+        $cookie_data = $session['session_id'] . '|' . $user['email'] . '|' . $user_id . '|' . $session['login_time'];
+        $expected_hash = hash_hmac('sha256', $cookie_data, $session['session_id'] . '_' . $user['email']);
+        if ($provided_hash === $expected_hash) {
+            $valid_session = true;
+            break;
+        }
+    }
+    
+    if (!$valid_session) {
+        error_log("getArtistStatistics: No valid session found for user " . $user_id);
+        return null;
+    }
+    
+    return $user_id;
+}
+```
+
+#### 2. ARTIST PRODUCTS RETRIEVAL
+
+The function `getArtistProducts()` fetches artwork data with sales statistics:
+
+```php
+function getArtistProducts($conn, $artist_id) {
+    try {
+        $query = "
+            SELECT 
+                a.artwork_id,
+                a.title,
+                a.description,
+                a.price,
+                a.dimensions,
+                a.artwork_image,
+                a.type,
+                a.is_available,
+                a.on_auction,
+                a.created_at,
+                auc.id as auction_id,
+                0 as cart_count,
+                0 as wishlist_count,
+                COUNT(DISTINCT CASE WHEN o.status IN ('paid', 'shipped', 'delivered') THEN o.id END) as sales_count,
+                COALESCE(SUM(CASE WHEN o.status IN ('paid', 'shipped', 'delivered') THEN oi.price * oi.quantity END), 0) as total_earnings
+            FROM artworks a
+            LEFT JOIN auctions auc ON a.artwork_id = auc.product_id AND a.artist_id = auc.artist_id
+            LEFT JOIN order_items oi ON a.artwork_id = oi.artwork_id
+            LEFT JOIN orders o ON oi.order_id = o.id
+            WHERE a.artist_id = ? 
+            AND (auc.id IS NULL OR auc.status NOT IN ('upcoming', 'starting_soon', 'active'))
+            GROUP BY a.artwork_id
+            ORDER BY a.created_at DESC
+        ";
+        
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $artist_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $status = 'Draft';
+            if ($row['on_auction']) {
+                $status = 'On Auction';
+            } elseif ($row['is_available']) {
+                $status = 'Available';
+            } else {
+                $status = 'Sold';
+            }
+            
+            $products[] = [
+                'id' => $row['artwork_id'],
+                'title' => $row['title'],
+                'description' => $row['description'],
+                'price' => (float)$row['price'],
+                'dimensions' => $row['dimensions'],
+                'image' => $row['artwork_image'] ? '/uploads/artworks/' . $row['artwork_image'] : '/image/placeholder-artwork.jpg',
+                'type' => $row['type'],
+                'status' => $status,
+                'auction_id' => $row['auction_id'],
+                'on_auction' => (bool)$row['on_auction'],
+                'cart_count' => (int)$row['cart_count'],
+                'wishlist_count' => (int)$row['wishlist_count'],
+                'sales_count' => (int)$row['sales_count'],
+                'total_earnings' => (float)$row['total_earnings'],
+                'created_at' => $row['created_at']
+            ];
+        }
+        
+        $stmt->close();
+        return $products;
+        
+    } catch (Exception $e) {
+        throw new Exception("Error fetching artist products: " . $e->getMessage());
+    }
+}
+```
+
+#### 3. GALLERIES DATA RETRIEVAL
+
+The function `getArtistGalleries()` fetches both virtual and local galleries:
+
+```php
+function getArtistGalleries($conn, $artist_id) {
+    try {
+        $query = "
+            SELECT 
+                g.gallery_id as id,
+                g.title,
+                g.description,
+                g.gallery_type,
+                g.address,
+                g.city,
+                g.phone,
+                g.price,
+                g.duration,
+                g.is_active,
+                g.created_at,
+                g.img,
+                0 as artwork_count,
+                0 as enrolled_count,
+                0 as cart_count,
+                0 as wishlist_count
+            FROM galleries g
+            WHERE g.artist_id = ?
+            ORDER BY g.created_at DESC
+        ";
+        
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $artist_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        $virtual_galleries = [];
+        $local_galleries = [];
+        
+        while ($row = $result->fetch_assoc()) {
+            // Handle gallery image path
+            $gallery_image = '';
+            if ($row['img']) {
+                if (strpos($row['img'], 'uploads/galleries/') === 0) {
+                    $gallery_image = '/' . $row['img'];
+                } else {
+                    $gallery_image = '/uploads/galleries/' . $row['img'];
+                }
+            } else {
+                $gallery_image = '/image/default-gallery.jpg';
+            }
+            
+            $gallery_data = [
+                'id' => $row['id'],
+                'title' => $row['title'],
+                'description' => $row['description'],
+                'price' => (float)$row['price'],
+                'duration' => (int)$row['duration'],
+                'artwork_count' => (int)$row['artwork_count'],
+                'enrolled_count' => (int)$row['enrolled_count'],
+                'cart_count' => (int)$row['cart_count'],
+                'wishlist_count' => (int)$row['wishlist_count'],
+                'created_at' => $row['created_at'],
+                'image' => $gallery_image
+            ];
+            
+            if ($row['gallery_type'] === 'virtual') {
+                $gallery_data['status'] = $row['is_active'] ? 'Published' : 'Draft';
+                $virtual_galleries[] = $gallery_data;
+            } else { // physical gallery
+                $gallery_data['address'] = $row['address'];
+                $gallery_data['city'] = $row['city'];
+                $gallery_data['phone'] = $row['phone'];
+                $gallery_data['status'] = $row['is_active'] ? 'Approved' : 'Pending Approval';
+                $local_galleries[] = $gallery_data;
+            }
+        }
+        
+        $stmt->close();
+        
+        return [
+            'virtual_galleries' => $virtual_galleries,
+            'local_galleries' => $local_galleries
+        ];
+        
+    } catch (Exception $e) {
+        throw new Exception("Error fetching artist galleries: " . $e->getMessage());
+    }
+}
+```
+
+## DATA FLOW EXPLANATION
+
+### 1. USER INTERACTION FLOW
+1. Artist logs into the portal using their credentials
+2. Artist navigates to the "My Statistics" section in the sidebar
+3. JavaScript detects the section change and calls `loadArtistStatistics()`
+
+### 2. AUTHENTICATION FLOW
+1. System checks user credentials using `getUserCredentials()`
+2. Validates user is authenticated and has 'artist' role
+3. Extracts user_id from authentication data
+
+### 3. DATA FETCHING FLOW
+1. Frontend makes AJAX request to `./API/getArtistStatistics.php`
+2. API validates user session using cookie authentication
+3. API queries database for artist's data across multiple tables:
+   - `artworks` table for artwork information
+   - `galleries` table for virtual and local galleries
+   - `auctions` table for auction data
+   - `orders` and `order_items` tables for sales statistics
+
+### 4. DATA PROCESSING FLOW
+1. API processes raw database data and formats it into structured arrays
+2. API returns JSON response with organized data sections:
+   - `summary`: Overall statistics (counts)
+   - `products`: Artwork data with sales metrics
+   - `virtual_galleries`: Virtual gallery listings
+   - `local_galleries`: Physical gallery listings
+   - `auctions`: Active and past auctions
+
+### 5. FRONTEND RENDERING FLOW
+1. JavaScript receives API response
+2. Data is transformed using transformation functions
+3. Each section is rendered using specialized render functions:
+   - `renderArtworksSection()`: Creates carousel of artwork cards
+   - `renderVirtualGalleriesSection()`: Creates virtual gallery carousel
+   - `renderLocalGalleriesSection()`: Creates local gallery carousel
+   - `renderAuctionsSection()`: Creates auction carousel
+4. Swiper.js carousels are initialized for navigation
+5. Loading state is hidden and content is displayed
+
+## DATABASE SCHEMA DEPENDENCIES
+
+The statistics system relies on these database tables:
+
+### 1. artworks
+- `artwork_id`: Primary key
+- `artist_id`: Foreign key to users table
+- `title`: Artwork title
+- `description`: Artwork description
+- `price`: Artwork price
+- `artwork_image`: Image filename
+- `type`: Artwork category
+- `is_available`: Availability status
+- `on_auction`: Whether artwork is in auction
+
+### 2. galleries
+- `gallery_id`: Primary key
+- `artist_id`: Foreign key to users table
+- `title`: Gallery title
+- `gallery_type`: 'virtual' or 'physical'
+- `price`: Entry/participation price
+- `is_active`: Publication status
+
+### 3. auctions
+- `id`: Primary key
+- `artist_id`: Foreign key to users table
+- `product_id`: Foreign key to artworks table
+- `starting_bid`: Initial bid amount
+- `current_bid`: Current highest bid
+- `status`: Auction status
+
+### 4. orders & order_items
+- Used for calculating sales statistics
+- `orders.status`: Order completion status
+- `order_items.price` & `quantity`: For revenue calculation
+
+## KEY FEATURES
+
+### 1. REAL-TIME STATISTICS
+- Dashboard cards show live counts of artworks, galleries, and auctions
+- Sales data includes completed orders only
+- Revenue calculations include commission deductions (85% to artist)
+
+### 2. VISUAL CAROUSELS
+- Uses Swiper.js for smooth carousel navigation
+- Each section (artworks, galleries, auctions) has its own carousel
+- Responsive design adapts to different screen sizes
+
+### 3. COMPREHENSIVE DATA
+- Each artwork shows sales count, earnings, and status
+- Galleries distinguish between virtual and physical types
+- Auctions show bidding information and status
+
+### 4. AUTHENTICATION SECURITY
+- Comprehensive cookie validation
+- Session verification against database
+- User role verification (must be 'artist')
+
+### 5. ERROR HANDLING
+- Graceful fallbacks for missing data
+- Empty state displays when no data available
+- Loading states during data fetching
+
+### 6. CACHE MANAGEMENT
+- Aggressive cache clearing to ensure fresh data
+- Timestamp-based cache busting
+- Session cleanup for data integrity
+
+This system provides artists with a comprehensive view of their performance on the platform, including detailed statistics about their artworks, galleries, auctions, and sales performance, all presented in an intuitive and visually appealing interface.
